@@ -18,7 +18,14 @@ const config = {
     "next/core-web-vitals",
     "prettier",
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: ["pages/**/*.ts", "pages/**/*.tsx"],
+      rules: {
+        "import/no-default-export": 0,
+      },
+    },
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./tsconfig.json",

@@ -35,7 +35,8 @@
     ".prettierrc.js",
     "**/*.ts",
     "**/*.tsx",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }
