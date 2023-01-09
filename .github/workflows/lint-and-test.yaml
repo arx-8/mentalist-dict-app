@@ -1,0 +1,42 @@
+name: lint & test
+
+on:
+  push:
+    branches:
+      - "**"
+      - "!main"
+
+jobs:
+  ci:
+    name: lint & test
+
+    timeout-minutes: 5
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .tool-versions
+          cache: npm
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
+
+      - run: npm run lint-dry
+
+      # TODO add unit tests
+      # - run: npm test
