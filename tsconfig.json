@@ -30,6 +30,12 @@
     "strictPropertyInitialization": true /* Check for class properties that are declared but not set in the constructor. */,
     "useUnknownInCatchVariables": true /* Default catch clause variables as 'unknown' instead of 'any'. */
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    ".eslintrc.js",
+    ".prettierrc.js",
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
